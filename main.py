@@ -3,11 +3,15 @@ import traceback
 
 import requests
 import tweepy
+from telegram import Bot
+import asyncio
 
 from tools import read_config, run_request
 
 config = read_config()
 cat_api_key = config["cat_api_key"]
+telegram_chat_id = config["telegram_chat_id"]
+telegram_bot_id = config["telegram_bot_id"]
 
 try:
     auth = tweepy.OAuth1UserHandler(
@@ -35,6 +39,13 @@ try:
     api.update_status_with_media("One #cat per day keeps the doctor away.", image_name)
 
     os.remove(image_name)
+
+    bot = Bot(telegram_bot_id)
+
+    if url.endswith(".gif"):
+        asyncio.run(bot.send_animation(telegram_chat_id, url))
+    else:
+        asyncio.run(bot.send_photo(telegram_chat_id, url))
 except Exception as exc:
     print(exc)
     traceback.print_exc()
