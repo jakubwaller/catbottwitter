@@ -4,6 +4,8 @@ The code for https://twitter.com/CatBot42
 
 Because one cat per day keeps the doctor away.
 
+Thanks to https://twitter.com/TwitterDev/status/1621026986784337922 the bot is now posting also on [telegram](https://t.me/one_cat_per_day) and [mastodon](https://hostux.social/@aloissiola).
+
 ## Deployment
 
 - Create a Cat Api key [here](https://thecatapi.com/)
